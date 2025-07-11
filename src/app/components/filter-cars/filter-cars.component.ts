@@ -9,10 +9,6 @@ import { CarsService } from '../../services/cars.service';
 })
 export class FilterCarsComponent {
   private carsService = inject(CarsService);
-  $cars = computed(() => this.carsService.$cars());
-  $loading = computed(() => this.carsService.$loading());
-  $error = computed(() => this.carsService.$error());
-  $filteredCars = computed(() => this.carsService.$filteredCars());
   $uniqueCountries = computed(() => this.carsService.$uniqueCountries());
   $uniqueVehicleTypes = computed(() => this.carsService.$uniqueVehicleTypes());
   $stats = computed(() => this.carsService.$stats());

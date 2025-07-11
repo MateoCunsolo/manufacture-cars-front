@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Manufacturer } from '../../models/cars.response';
-import { CarsService } from '../../services/cars.service';
 
 @Component({
   selector: 'app-card-cars',
@@ -14,12 +13,6 @@ import { CarsService } from '../../services/cars.service';
 export class CardCarsComponent {
   @Input() car!: Manufacturer;
   isOpen = false;
-
-  constructor(private carsService: CarsService) {}
-
-  ngOnInit() {
-    console.log(this.car);
-  }
 
   openModal(): void {
     this.isOpen = true;

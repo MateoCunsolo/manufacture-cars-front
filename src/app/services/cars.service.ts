@@ -52,11 +52,10 @@ export class CarsService {
     });
   });
 
-  // Computed signal para países únicos
+
   $uniqueCountries = computed(() => {
     const cars = this.$cars();
     const countries = new Map<string, { code: string; name: string; flag: string }>();
-    
     cars.forEach(car => {
       if (!countries.has(car.countryCode)) {
         countries.set(car.countryCode, {
@@ -70,7 +69,6 @@ export class CarsService {
     return Array.from(countries.values()).sort((a, b) => a.name.localeCompare(b.name));
   });
 
-  // Computed signal para tipos de vehículos únicos
   $uniqueVehicleTypes = computed(() => {
     const cars = this.$cars();
     const types = new Set<string>();
