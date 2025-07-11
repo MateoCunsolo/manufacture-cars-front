@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ListCarsComponent } from './components/list-cars/list-cars.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ListCarsComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styles: []
 })
 export class AppComponent {
   title = 'testing-angular';

@@ -8,19 +8,19 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('debería crear la app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'testing-angular' title`, () => {
+  it('debería tener el título "testing-angular"', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('testing-angular');
   });
 
-  it('should render title', () => {
+  it('debería renderizar el título', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;

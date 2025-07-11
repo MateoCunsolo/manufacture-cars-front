@@ -1,0 +1,65 @@
+<div class="cars-list__filters-container">
+  <div class="cars-list__filters-panel">
+    @if (hasActiveFilters()) {
+      <div class="cars-list__active-filters">
+        <span class="active-filters-label">Filtros activos:</span>
+        <span class="active-filters-summary">{{ getFilterSummary() }}</span>
+        <button 
+          class="clear-filters-btn"
+          (click)="clearAllFilters()">
+          Limpiar filtros
+        </button>
+      </div>
+    }
+
+    <div class="cars-list__filters-grid">
+      <div class="filter-group">
+        <label class="filter-label">Buscar fabricante:</label>
+        <input 
+          type="text" 
+          class="filter-input"
+          placeholder="Nombre, país..."
+          [value]="$searchTerm()"
+          (input)="onSearchChange($event)">
+      </div>
+
+      <!-- Filtro por país -->
+      <div class="filter-group">
+        <label class="filter-label">Filtrar por país:</label>
+        <select 
+          class="filter-select"
+          (change)="filterByCountry($event)">
+          <option value="">Todos los países</option>
+          @for (country of $uniqueCountries(); track country.code) {
+            <option value="{{ country.code }}">
+              {{ country.name }} ({{ country.code }})
+            </option>
+          }
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Filtrar por tipo:</label>
+        <select 
+          class="filter-select"
+          (change)="filterByVehicleType($event)">
+          <option value="">Todos los tipos</option>
+          @for (type of $uniqueVehicleTypes(); track type) {
+            <option value="{{ type }}">{{ type }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="cars-list__filter-stats">
+      <div class="stat-item">
+        <span class="stat-label">Países:</span>
+        <span class="stat-value">{{ $stats().countries }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Tipos de vehículos:</span>
+        <span class="stat-value">{{ $stats().vehicleTypes }}</span>
+      </div>
+    </div>
+  </div>
+</div>

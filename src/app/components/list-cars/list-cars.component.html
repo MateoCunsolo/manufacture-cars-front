@@ -1,0 +1,60 @@
+<section class="cars-list">
+  @if ($loading()) {
+  <div class="cars-list__loading">
+    <div class="loading-spinner"></div>
+    <p class="cars-list__loading-text">Cargando fabricantes...</p>
+  </div>
+  } @else {
+  <div class="cars-list__header">
+    <div class="cars-list__title-section">
+      <h2 class="cars-list__title">
+        Explorá vehículos de las marcas más reconocidas
+      </h2>
+      @if ($stats().filtered !== $stats().total) {
+      <span class="cars-list__filtered-count">
+        Mostrando {{ $stats().filtered }} de {{ $stats().total }}
+      </span>
+      }
+    </div>
+    <button
+      class="cars-list__filter-toggle"
+      (click)="toggleFilters()"
+      [class.active]="showFilters()"
+    >
+      <span class="filter-icon">🔍</span>
+      Filtros @if (hasActiveFilters()) {
+      <span class="filter-badge">{{ $stats().filtered }}</span>
+      }
+    </button>
+  
+  </div>
+  @if (showFilters()) {
+    <app-filter-cars></app-filter-cars>
+    }
+
+  <div class="cars-list__grid">
+    @for (car of $filteredCars(); track car.commonName) {
+    <app-card-cars [car]="car"></app-card-cars>
+    } @empty {
+    <div class="cars-list__empty">
+      <div class="empty-icon">🚗</div>
+      <p class="cars-list__empty-text">
+        @if (hasActiveFilters()) { No se encontraron fabricantes con los filtros
+        aplicados } @else { No hay fabricantes disponibles }
+      </p>
+      @if (hasActiveFilters()) {
+      <button class="clear-filters-btn" (click)="clearAllFilters()">
+        Limpiar filtros
+      </button>
+      }
+    </div>
+    }
+  </div>
+  } @if ($error()) {
+  <div class="cars-list__error">
+    <div class="error-icon">⚠️</div>
+    <p class="cars-list__error-text">{{ $error() }}</p>
+    <button class="retry-btn" (click)="retryFetch()">Reintentar</button>
+  </div>
+  }
+</section>

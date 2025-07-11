@@ -1,0 +1,34 @@
+<div class="grid-card-item" (click)="isOpen = !isOpen">
+  <div class="country-info">
+    <p class="country-flag-text">
+      <img [src]="car.flagUrl" [alt]="'Bandera de ' + car.country" width="30" />
+      {{ car.country }}
+    </p>
+  </div>
+  <p class="manufacturer-name">{{ car.commonName }}</p>
+  <div class="grid-card-container-vehicle-types">   
+    @if (car.vehicleTypes.length > 0) {
+     <p class="vehicle-types-text">Vehículos disponibles: {{ car.vehicleTypes.length }}</p>
+    } @else {
+      <p class="vehicle-types-text">No hay vehículos</p> 
+    }
+  </div>
+</div>
+
+@if (isOpen) {
+<div class="modal">
+  <div class="modal-content">
+    <div class="close-modal">
+      <button (click)="isOpen = false">X</button>
+    </div>  
+    <p class="modal-title-text">Vehículos disponibles</p>
+    <div class="grid-card-container-vehicle-types-modal">
+      @for (vehicleType of car.vehicleTypes; track vehicleType.name) {
+      <li class="grid-card-item-vehicle-types-modal" (click)="navigateToVehicleType(vehicleType.name)">{{ vehicleType.name }}</li>
+      }@empty {
+      <p>No hay vehículos</p>
+      }
+    </div>
+  </div>
+</div>
+}
