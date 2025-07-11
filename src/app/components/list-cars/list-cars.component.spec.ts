@@ -148,7 +148,6 @@ describe('ListCarsComponent', () => {
 
   describe('Filter Management', () => {
     it('should detect active filters when filters are applied', () => {
-      // Mock service with active filters
       (service.$filterCriteria as any) = signal({ 
         countryCode: 'DE', 
         vehicleType: '', 
@@ -161,7 +160,6 @@ describe('ListCarsComponent', () => {
     });
 
     it('should detect no active filters when filters are empty', () => {
-      // Mock service with empty filters
       (service.$filterCriteria as any) = signal({ 
         countryCode: '', 
         vehicleType: '', 
